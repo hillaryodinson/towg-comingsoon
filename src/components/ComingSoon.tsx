@@ -15,18 +15,25 @@ const ComingSoonPage: React.FC = () => {
 
 		const observer = new IntersectionObserver((entries) => {
 			entries.forEach((entry) => {
-				if (entry.isIntersecting) {
-					(entry.target as HTMLElement).style.animationPlayState =
-						"running";
+				if (
+					entry.isIntersecting &&
+					entry.target instanceof HTMLElement
+				) {
+					entry.target.style.animationPlayState = "running";
 					observer.unobserve(entry.target);
 				}
 			});
 		}, observerOptions);
 
-		const elements = [logoRef, mainContentRef, contactSectionRef, footerRef]
-			.map((ref) => ref.current)
-			.filter(Boolean) as Element[];
+		// Get all elements and filter out null values, ensuring they're HTMLElement
+		const elements: HTMLElement[] = [];
 
+		if (logoRef.current) elements.push(logoRef.current);
+		if (mainContentRef.current) elements.push(mainContentRef.current);
+		if (contactSectionRef.current) elements.push(contactSectionRef.current);
+		if (footerRef.current) elements.push(footerRef.current);
+
+		// Pause animations initially and observe elements
 		elements.forEach((el) => {
 			el.style.animationPlayState = "paused";
 			observer.observe(el);
@@ -36,6 +43,11 @@ const ComingSoonPage: React.FC = () => {
 			elements.forEach((el) => observer.unobserve(el));
 		};
 	}, []);
+
+	const handlePhoneClick = () => {
+		// You can add analytics or other tracking here
+		console.log("Phone number clicked");
+	};
 
 	return (
 		<div className="container">
@@ -55,10 +67,27 @@ const ComingSoonPage: React.FC = () => {
 				</p>
 
 				<FloatingElements />
+
+				<div className="contact-section" ref={contactSectionRef}>
+					<h2>Get In Touch</h2>
+					<div className="contact-info">
+						<a
+							href="tel:+1-800-555-HEAL"
+							className="phone-number"
+							onClick={handlePhoneClick}>
+							<i className="fas fa-phone"></i>
+							<span>+1 (800) 555-HEAL</span>
+						</a>
+						<p className="contact-text">
+							Have questions? Call us now and our team will be
+							happy to assist you.
+						</p>
+					</div>
+				</div>
 			</div>
 
 			<footer ref={footerRef}>
-				<p>&copy; 2025 Towg Health Products. All rights reserved.</p>
+				<p>&copy; 2023 Towg Health Products. All rights reserved.</p>
 			</footer>
 		</div>
 	);
