@@ -48,7 +48,7 @@ const ComingSoonPage: React.FC = () => {
 		<div className="container">
 			<div className="logo" ref={logoRef}>
 				<i className="fas fa-heartbeat"></i>
-				<span>towg</span>
+				<span>TOWG</span>
 			</div>
 
 			<div className="main-content" ref={mainContentRef}>
