@@ -67,23 +67,6 @@ const ComingSoonPage: React.FC = () => {
 				</p>
 
 				<FloatingElements />
-
-				<div className="contact-section" ref={contactSectionRef}>
-					<h2>Get In Touch</h2>
-					<div className="contact-info">
-						<a
-							href="tel:+1-800-555-HEAL"
-							className="phone-number"
-							onClick={handlePhoneClick}>
-							<i className="fas fa-phone"></i>
-							<span>+1 (800) 555-HEAL</span>
-						</a>
-						<p className="contact-text">
-							Have questions? Call us now and our team will be
-							happy to assist you.
-						</p>
-					</div>
-				</div>
 			</div>
 
 			<footer ref={footerRef}>
