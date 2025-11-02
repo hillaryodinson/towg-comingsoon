@@ -44,11 +44,6 @@ const ComingSoonPage: React.FC = () => {
 		};
 	}, []);
 
-	const handlePhoneClick = () => {
-		// You can add analytics or other tracking here
-		console.log("Phone number clicked");
-	};
-
 	return (
 		<div className="container">
 			<div className="logo" ref={logoRef}>
